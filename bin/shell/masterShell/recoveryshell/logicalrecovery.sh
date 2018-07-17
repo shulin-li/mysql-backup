@@ -6,4 +6,10 @@ service mysqld start &>> /tmp/text.txt
 
 cd /backup/data/logical
 
-mysql -u$USER -p$PASSWORD < $DATA_NAME
+gunzip $DATA_NAME
+
+FILENAME=${DATA_NAME:0:23}
+
+mysql -u$USER -p$PASSWORD < $FILENAME
+
+rm -rf $FILENAME
